@@ -1,30 +1,25 @@
-# reportisel
-Template for bachelor and master degrees report written in LaTex
+# thesisisel
+The thesisisel is designed to create a bachelor or master degrees report written in LaTex
 
 1. Instructions
 
-This template serves both degrees as a bachelor's and master's degree. And, during the development stages of the work as final or "Preparation of BSc (MSc) dissertation". To do this simply change the following settings (see template.tex, line 29-41):
+This template serves both degrees as a bachelor's and master's degree. And, during the development stages of the work as final or "Preparation of BSc (MSc) dissertation". To do this simply change the following settings (see template.tex, line 34-46):
 
 	\documentclass[
-		msc,			% (*) msc, prepmsc, bsc, prepbsc - degree
-						% prepbsc(msc) Preparation of BSc (MSc) dissertation
-						% bsc(msc) BSc graduation report/ MSc dissertation
-						% GO TO LINE 189
-		pt,				% (*) pt, en - languages 
-		twoside,		% (*) twoside, oneside - single or double sided printing
-		12pt,			% (*) 12pt, 11pt, 10pt - use font size
-		a4paper,		% the paper size/format
+		msc,		% (*) msc, prepmsc, bsc, prepbsc - degree
+					% prepbsc(msc) Preparation of BSc (MSc) dissertation
+					% bsc(msc) BSc graduation report/ MSc dissertation
+		pt,			% (*) pt, en - languages 
+		twoside,	% (*) twoside, oneside - single or double sided printing
+		12pt,		% (*) 12pt, 11pt, 10pt - use font size
+		a4paper,	% Paper size/format
 		utf8,			% (*) utf8, latin1	- Text encoding: Linux, Mac or Windows
-		hyperref = true,% Hyperlinks in citations: true(*) false
+		onpaper, % (*) onpaper, onscreen Format your thesis in a way that presents well on paper and/or on screen
+		hyperref = true,  % (*) true, false - Hyperlinks in citations
 		listof=totoc
 		]{thesisisel} 
 
 	1.1 How to run
-
-	Nomenclature:
-		$ pdflatex template
-		$ makeindex template.nlo -s nomencl.ist -o template.nls
-		$ pdflatex template (twice)
 
 	Bibliography:
 		$ pdflatex template
@@ -51,6 +46,15 @@ thesisisel This is the main directory and includes:
 	2.8 bibliography.bib: The bib file. An easy way to find to import citation into bibtex is select option "Show links to import citation into BibTex" in \href{http://scholar.google.pt/scholar_settings?hl=en&as_sdt=0,5}{Scholar google settings}.
 	2.9 thesisisel.cls: The  LaTeX class file for the thesis{} style. Currently, some of the defaults are stored here instead of \verb!defaults.tex!. This file should not be changed, unless you're ready to play with fire! :) - DO NOT CHANGE);
 	
+All of these files should be in the same folder. The outputs will be a .pdf file called **template.pdf** with the manuscript. After that, this should be renamed. 
+
+In addition, latex generates extra files which are .aux, .log, .out, .bbl and .synctex.gz. Theses files provide important info: 
+	
+	.log - about the compiler that you are running (warning and errors);
+	.aux, .sync, .toc and others - are needed for things to actually work when you compile your document multiple times.
+
+Deleting them can break things, then it's not really a great idea to (automatically) remove them. However, if you desire to have a cleaner working directory, there are a few ways to accomplish that. For example, you can compile your document with the output-directory parameter. [Read more ...](https://tex.stackexchange.com/questions/369771/how-to-delete-files-generated-by-latex)  
+	
 # 
 
 3. Some informations
@@ -62,7 +66,7 @@ The template will first automatically place the abstract in the language of the 
 4. How to write using LaTex
 
 	https://www.latex-project.org
-	https://www.sharelatex.com/learn/Creating_a_document_in_LaTeX
+	https://www.overleaf.com
 	http://www4.di.uminho.pt/~jcr/AULAS/didac/manuais/manual-latex.pdf
 
 	tikZ and PGF: http://www.texample.net/tikz/
@@ -75,18 +79,21 @@ The template will first automatically place the abstract in the language of the 
 
 	2. MiKTeX (pronounced mick-tech) is an up-to-date implementation of TeX/LaTeX and related programs. TeX is a typesetting system written by Donald Ervin Knuth who says that it is intended for the creation of beautiful books - and especially for books that contain a lot of mathematics. (source: https://miktex.org)
 
-	3. ShareLaTeX is an open-source online real-time collaborative LaTeX editor. We run a hosted version at http://www.sharelatex.com, but you can also run your own local version, and contribute to the development of ShareLaTeX. (source: https://pt.sharelatex.com)
-	
-	4. Overleaf is an online LaTeX and Rich Text collaborative writing and publishing tool that makes the whole process of writing, editing and publishing scientific documents much quicker and easier. (source: https://www.overleaf.com)
+	3. Visual Studio Code is a source code editor which runs on your desktop and is available for Windows, macOS and Linux. It comes with built-in support for JavaScript, TypeScript and Node.js and has a rich ecosystem of extensions for other languages (such as C++, C#, Java, Python, PHP, Go, Latex) and runtimes (such as .NET and Unity). (source: https://code.visualstudio.com)
+	Helper: LaTeX Workshop (https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
 
-# 
+	4. Overleaf is an open-source online real-time collaborative LaTeX editor. Overleaf comes with a complete, ready to go LaTeX environment which runs on our servers. With Overleaf you get the same LaTeX set-up wherever you go. By working with your colleagues and students on Overleaf, you know that you're not going to hit any version inconsistencies or package conflicts. (source: https://www.overleaf.com)
 
-Authors
+## Authors
 
 	Matilde Pós-de-Mina Pato
 	Nuno Datia (as contributor)
 
-January, 04th 2019 
+September, 25th 2020
 
 
-this package and template are not official for ISEL/IPL.
+This package and template are not official for ISEL/IPL.
+
+# License
+
+[MIT](https://choosealicense.com/licenses/mit/)

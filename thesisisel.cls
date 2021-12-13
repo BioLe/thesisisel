@@ -1,23 +1,27 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% thesisisel.cls
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% thesisisel.cls
 %%% ISEL/IPL Dissertation document class
 %%%
-%%% By Matilde Pós-de-Mina Pato (mpato@deq.isel.pt)
+%%% By Matilde Pós-de-Mina Pato (matilde.pato@isel.pt)
 %%% Version of October 2012
 %%% Version v1.1:  July 2013 
 %%% Version v2.0: March 2015
 %%% Version v2.3: December 2017
 %%% Version v2.4: January 2019
+%%% Version v2.5: December 2019
+%%% Version v2.5.1.: February 2020
+%%% Version v2.5.2.: March 2020
+%%% Version v2.5.3.: June 2020
 %%% 
 %%% This template is vaguely based on a template from the
 %%%     Universidade Nova de Lisboa (NOT OFFICIAL)
 %%%
-%%% BUGS and SUGGESTIONS: please send email to "mpato@deq.isel.pt"
+%%% BUGS and SUGGESTIONS: please send email to "matilde.pato@isel.pt"
 %%%     or sumit a ticket in the the project web page at
 %%%     https://github.com/matpato/thesisisel
 %%%
-%%% CONTRIBUTERS are welcome. Please contact "mpato@deq.isel.pt"
+%%% CONTRIBUTERS are welcome. Please contact "matilde.pato@isel.pt"
 %%%
+%%% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{thesisisel}[2012/10/09 ISEL thesis template]
@@ -65,15 +69,13 @@
 \DeclareOption{latin1}{\let\@utf=0}
 \DeclareOption{utf8}{\let\@utf=1}
 
-% == Type of Document ===
-%
-% \@degreetype=0	BSc preliminary report	: prepbsc
+% == Type of document ===
+% \@degreetype=0	BSc preliminary report		: prepbsc
 % \@degreetype=1	BSc report							: bsc
-% \@degreetype=2	MSc preliminary report	: prepmsc
+% \@degreetype=2	MSc preliminary report		: prepmsc
 % \@degreetype=3	MSc dissertation				: msc
 %
 			
-%\let\@degreetype=4
 \DeclareOption{prepbsc}{
 	\let\@degreetype=0
 	\def\@degree{\@bachelordegree}
@@ -95,25 +97,59 @@
 	\def\@dissertationtype{\@mscdissertationtstr}
 }
 
+% == Printable or On Screen  Document ===
+%
+% \@printable=1		Format your thesis in a way that presents on paper: onpaper
+% \@printable=0		Format your thesis in a way that presents on screen: onscreen 
+%\let\@degreetype=4
+\DeclareOption{onpaper}{
+	\let\@printable=1
+}
+\DeclareOption{onscreen}{
+	\let\@printable=0
+}
 
 % == Default Options ===
-\ExecuteOptions{pt,msc}
+\ExecuteOptions{
+	pt,
+	msc,
+	onscreen
+}
 \ProcessOptions
 
-\LoadClass{book}
-
-\RequirePackage[
-			breaklinks = true,
-			colorlinks,
-			pdfdisplaydoctitle,
-			citecolor=mydarkblue,
-			linkcolor=black,
-			urlcolor=mydarkblue,
-			pagebackref]{hyperref} 
+\LoadClass{book} 
 			
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% PACKAGES
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%================================================
+% PACKAGE hyperref
+%================================================
+% Set links for references and citations in document
+% Some MiKTeX distributions have faulty PDF creators in which case this package will not work correctly
+% Long live Linux :D
+%% Title of Report + author(s) + professor + date
+%\hypersetup{ a4paper=true,
+%%             pdftitle={ },
+%%             pdfauthor={ },
+%%             pdfsubject={ },
+% %            pdfcreator={Matilde P.M. Pato},
+% %            pdfkeywords={ }
+%             }
+\RequirePackage[
+			breaklinks = true,
+			hidelinks,
+			colorlinks,
+			pdfdisplaydoctitle,
+			citecolor=mydarkblue,
+			linkcolor=black,
+			urlcolor=mydarkblue
+			]{hyperref}
+
+%================================================
+% PACKAGE latin, utf8
+%================================================
 % Latin1
 \if\@utf0
 \RequirePackage[latin1]{inputenc}
@@ -124,9 +160,9 @@
 
 \RequirePackage[T1]{fontenc}
 
-%====================================================================
+%================================================
 % PACKAGE amsmath, amsthm, amssymb, amsfonts:
-%====================================================================
+%================================================
 % This package is typically required. Among many other things it adds the possibility
 % to put symbols in bold by using \boldsymbol (not \mathbf); defines additional 
 % fonts and symbols; adds the \eqref command for citing equations. I prefer the style
@@ -138,7 +174,7 @@
   \let\iiiint\relax 
   \let\idotsint\relax 
 \usepackage{amsmath, amssymb, amsfonts, verbatim, mathabx}
-
+\usepackage{spverbatim}
 % underline  
 \usepackage{ulem}
 
@@ -148,7 +184,7 @@
 \newcounter{saveenumi}
 \newcommand{\seti}{\setcounter{saveenumi}{\value{enumi}}}
 \newcommand{\conti}{\setcounter{enumi}{\value{saveenumi}}}
-% Beautiful simple tables
+% === Beautiful simple tables ===
 \usepackage{booktabs}
 \RequirePackage{csquotes}
 \RequirePackage{babel}
@@ -162,92 +198,46 @@
 \RequirePackage{setspace}           % One-and-half spacing
 \onehalfspacing
 
-%======================================================================
-% General styles
+%================================================
+% PACKAGE general styles
+%================================================
 %\RequirePackage{mathptmx}
 \RequirePackage[scaled]{helvet}
 \RequirePackage{courier}
 \RequirePackage{palatino}
 \usepackage{xmpincl}
-\usepackage[a-1b]{pdfx}
+%\usepackage[a-1b]{pdfx}
 
-%======================================================================
-
-
+\RequirePackage[]{xcolor}
+\definecolor{mydarkblue}{rgb}{0.0,0.08,0.45}
 \usepackage{ifpdf}		% This is now the recommended way for checking for PDFLaTeX:
 \ifpdf
 	\RequirePackage[pdftex]{graphicx}
-	\DeclareGraphicsExtensions{.pdf, .png, .jpg, .tif}
-	\RequirePackage[pdftex,usenames,dvipsnames]{color}
-	\definecolor{mydarkblue}{rgb}{0.0,0.08,0.45}
-	
+	\DeclareGraphicsExtensions{.pdf, .png, .jpg, .tif}	
 	\else
 		\RequirePackage{graphicx}
 		\DeclareGraphicsExtensions{.eps, .png, .jpg}
-		\RequirePackage[usenames]{color}
-		\definecolor{mydarkblue}{rgb}{0.0,0.08,0.45}
-		%or, 
 \fi
 
- \def\PDF@FinishDoc{%
-  \Hy@UseMaketitleInfos
-  \pdfinfo{
-     /Title(\xmpTitle)%
-     /Author(\xmpAuthor)%
-	 /Creator(\xmpProducer)%
-     \ifx\@pdfcreationdate\@empty
-    \else
-      /CreationDate(\@pdfcreationdate)%
-    \fi
-    \ifx\@pdfmoddate\@empty
-    \else
-      /ModDate(\@pdfmoddate)%
-    \fi
-      /Producer(\xmpProducer)%
-     /Trapped /False
-     /GTS_PDFA1Version (PDF/A-1b:2005)%
-  }%
-  \Hy@EnableOption{pdfauthor}%
-  \Hy@DisableOption{pdftitle}%
-  \Hy@DisableOption{pdfsubject}%
-  \Hy@DisableOption{pdfcreator}%
-  \Hy@DisableOption{pdfcreationdate}%
-  \Hy@DisableOption{pdfmoddate}%
-  \Hy@DisableOption{pdfproducer}%
-  \Hy@DisableOption{pdfkeywords}
-  }
-  
-%====================================================================
-% PACKAGE hyperref
-%====================================================================
-% Set links for references and citations in document
-% Some MiKTeX distributions have faulty PDF creators in which case this package will not work correctly
-% Long live Linux :D
-%% Title of Report + author(s) + professor + date
-%\hypersetup{ a4paper=true,
-%%             pdftitle={ },
-%%             pdfauthor={ },
-%%             pdfsubject={ },
-% %            pdfcreator={Matilde P.M. Pato},
-% %            pdfkeywords={ }
-%             }
 
-%\RequirePackage[
-%			breaklinks = true,
-%			colorlinks,
-%			pdfdisplaydoctitle,
-%			citecolor=mydarkblue,
-%			linkcolor=black,
-%			urlcolor=mydarkblue,
-%			pagebackref]{hyperref} 
-%		
-	
+%  === Geometry: Print on paper ===
+\if\@printable1
 \RequirePackage[top=3cm,
 	bottom=3cm,
 	inner=3.5cm,
-	outer=2.5cm]{geometry}[2012/10/09]
-% \setlength{\marginparwidth}{2cm}
-
+	outer=2.5cm]{geometry}[2010/09/12]
+	
+% === Geometry: Print on screen ===
+\else\if\@printable0
+\RequirePackage[top=3cm,
+	bottom=3cm,
+	inner=2.5cm,
+	outer=2.5cm]{geometry}[2010/09/12]
+\fi\fi
+	
+%================================================
+% PACKAGE tikz
+%================================================
 \RequirePackage{tikz}	%Tikz is probably the most complex and powerful tool to create graphic elements in LATEX. 
 
 \RequirePackage{ctable}
@@ -258,19 +248,16 @@
 \cs_new_eq:NN \Repeat \prg_replicate:nn
 \ExplSyntaxOff
 
-\usepackage[square, comma, sort&compress, numbers]{natbib}
-\usepackage{tocbibind} % Add bibliography/index/contents to Table of Contents. Automatically adds the bibliography and/or the index and/or the contents, etc., to the Table of Contents.
-
-%====================================================================
+%================================================
 % PACKAGE algorithm and algpseudocode
-%====================================================================
+%================================================
 \usepackage[Algoritmo]{algorithm}
 \usepackage{algorithmicx}
 \usepackage{algpseudocode}
 
-%====================================================================
+%================================================
 % PACKAGE acronym and nomencl
-%====================================================================
+%================================================
 % This package is most usefull for acronyms. The package garantees that all acronyms definitions 
 % are given at the first usage. 
 % IMPORTANT: do not use acronyms in titles/captions; otherwise the definition will appear on the table of contents.
@@ -278,56 +265,110 @@
 % The nomencl package implements a few basic commands to do that.
 % First load the package in the preamble. The makenomenclature command is required for the generation of the nomenclature file (.nlo). Commenting it out is a convenient way to “switch it off”.
 %
-\usepackage[printonlyused,withpage]{acronym}
+
+%\usepackage[
+%	  printonlyused,
+%   withpage,
+%   intoc]               	% show listings as entries in table of contents      
+%	{nomencl}
+%\makenomenclature
 \usepackage[
-	intoc]               % show listings as entries in table of contents      
-	{nomencl}
-\makenomenclature
-\usepackage[
-	translate=babel,
+	%nogroupskip,
+	sort = standard,  %or, def or use
+	order = letter,		 %or, word
+	translate = babel,
+	shortcuts,
 	%nonumberlist, % do not show page numbers
-	acronym,        % generate acronym listing
-	toc,                % show listings as entries in table of contents
-	section]          % use section level for toc entries
+	acronym,        	% generate acronym listing
+	toc                		% show listings as entries in table of contents
+	]          				% use section level for toc entries
 	{glossaries}
 \glsdisablehyper
 \makenoidxglossaries
 
-\setglossarystyle{long} % long3colheader
+\setglossarystyle{long} %long3colheader
 % style=long,header=none,border=none,cols=2 &
 \addtolength{\glspagelistwidth}{1cm}
 \addtolength{\glsdescwidth}{2.5cm}
 \renewcommand*{\glsnamefont}[1]{\bfseries #1}%
-%====================================================================
+
+\def\UrlBreaks{\do\/\do-}
+%\usepackage[square, comma, sort&compress, numbers]{natbib}
+
+%================================================
 % PACKAGE pdfpages and pdflscape
-%====================================================================
+%================================================
 \usepackage{pdfpages} % include pdf file
 % The pdflscape package adds PDF support to the landscape environment of package lscape, by setting the PDF/Rotate page attribute.
 \usepackage{pdflscape}
 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%================================================
+% PACKAGE listings
+%================================================
+
+% To process lists and other stuff
+\RequirePackage{etoolbox}
+
+% The ‘listings’ package is loaded at the beginning of a LATEX file in the preamble
+% Here is an example of my \lset{} declaration for ‘R’ code. 
+% Then, after having including this (also in the preamble), I simply include my external ‘R’ files. 
+% They can be included using an:
+% \include{ } - like interface to the external files;
+% by using the command \lstinputlisting{./code.R} to include the code from the file code.R which % is located in the same directory as the ‘LATEX’ source file.
+%
+%====================================================================
+
+\usepackage{listings}
+% listings package provides a key called inputpath for specifying a path where \lstinputlisting should search for source files.
+\newcommand*\lstinputpath[1]{\lstset{inputpath=#1}}
+\usepackage{fancyvrb}
+\usepackage{fvextra}
+
+\renewcommand{\lstlistoflistings}{
+	\begingroup
+	\tocfile{\lstlistlistingname}{lol}
+	\endgroup
+	}
+
+%================================================
+% PACKAGE subcaption, float, figures, totalcount
+%================================================
+
+% To aggregate multiple figures in a single one with subfigures
+% Note: subfigure package does not recognise \textwidth as a number, when it is in fact a number (equivalent to the constant width of the total text block on a page). The way to resolve this is to use the more updated subcaption package
+\usepackage{subcaption}
+
+% To have text wrapping figures
+\usepackage{wrapfig}
+\usepackage{float}						% Improves the interface for defining floating objects such as figures and tables
+%
+\usepackage[figure,table,lstlisting]{totalcount}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% GENERAL PURPOSE MACROS
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %%
  \let\origcleardoublepage=\cleardoublepage
  \def\cleardoublepage{%
    \newpage{\pagestyle{empty}\origcleardoublepage}
  }
 
 % 
-% No identation
+% === No identation ===
 \setlength{\parskip}{\medskipamount}
 \setlength{\parindent}{0pt}
 % 
 
 %%
-% For use with the pseudocode package
+% === For use with the pseudocode package ===
  \def\@lopcchapterspace{\relax}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% LABELS
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
 %% Some relevant strings
 \gdef\@mbachelordegreestr{Licenciado}
 \gdef\@fbachelordegreestr{Licenciada}
@@ -361,7 +402,7 @@ de Mestre \\em \@majorfield}
 
 \gdef\@presentationtext{\@dissertationtype}
 
-%% Language Dependent
+%%  === Language Dependencies ===
 
 \gdef\@abstrnamePT{Resumo}
 \gdef\@abstrnameEN{Abstract}
@@ -369,10 +410,56 @@ de Mestre \\em \@majorfield}
 \gdef\@keywordsnamePT{Palavras-chave}
 \gdef\@keywordsnameEN{Keywords}
 
+% Portuguese
+\if\@language0
+  	\gdef\@notdefined{NÃO DEFINIDO}
+  	\gdef\acknowledgementsname{Agradecimentos} 
+  	
+  	\addto\captionsportuguese{% Replace "english" with the language you use
+  		\renewcommand{\contentsname}{Índice}%
+	}
+	
+ 	\renewcommand*{\listtablename}{Lista de Tabelas}
+	\renewcommand*{\listfigurename}{Lista de Figuras}
+	
+  	\def\appendixname{Anexos}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  	\def\glossaryname{Main}
+ 		\addto{\captionsportuguese}{
+ 			\renewcommand*{\acronymname}{Lista de Abreviaturas e Siglas}
+ 			\renewcommand*{\glossaryname}{Glossário}
+ 			\renewcommand*{\pagelistname}{Páginas}
+ 			\renewcommand*{\entryname}{Notação}
+	}
+ 
+	\def\lstlistlistingname{Listagens}
+	  	\addto{\captionsportuguese}{%
+			%\renewcommand*{\lstlistingname}{Listagem}%
+			\renewcommand*{\lstlistingname}{Listagem}% Listing -> Algorithm
+			\renewcommand{\lstlistlistingname}{Lista de Listagens}% List of Listings -> List of Algorithms
+	}
+	
+	\renewcommand{\algorithmicrequire}{\textbf{Dados: }}
+	\renewcommand{\algorithmicensure}{\textbf{Resultado: }}
+	
+% English
+\else\if\@language1
+  	\gdef\@notdefined{UNDEFINED}
+  	\gdef\acknowledgementsname{Acknowledgments}
+  	\def\appendixname{Appendix}
+
+	\def\lstlistlistingname{Listings}
+	  	\addto{\captionsenglish}{%
+			%\renewcommand*{\lstlistingname}{Listagem}%
+			\renewcommand*{\lstlistingname}{Listing}% Listing -> Algorithm
+			\renewcommand{\lstlistlistingname}{List of \lstlistingname s}% List of Listings -> List of Algorithms
+	}
+	  	
+\fi\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% DEFINE LOGO AND IMAGE IN FRONTPAGE
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% ADD ISEL's LOGO and IMAGE in frontpage
 \newcommand{\logo}[2]{
 \parbox[t][0.15\paperheight]{0.1\paperwidth}{%
@@ -445,6 +532,9 @@ de Mestre \\em \@majorfield}
 \def\theyear#1{\gdef\@theyear{#1}}
 \def\@theyear{~theyear \@notdefined}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% AUTHOR and ADVISORS DEFINITION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Author identification (at most 2 of each)
 %% \author[m|f]{Name}
@@ -465,23 +555,6 @@ de Mestre \\em \@majorfield}
     {\@pauthor[]}%
     {\@pauthor[][m]}}
 
-%\if\@degreetype=2
-	
-%  	\else
-%  	\typeout{^^J%
-%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J%
-%!  Please specify author gender using [m] or [f] as the first^^J%
-%!  argument of the "author" macro.  See the template! ;)^^J%
-%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J%
-%	}
-%   	\errhelp{Please be gentle and follow the template recommendations.}
-%   	\errmessage{Please specify author gender!}
-%  	\fi\fi
-%  	\gdef\@author{#2}
-%  	\hypersetup{pdfauthor={\@author}}
-%  	}
-%\else
-  	
 % #1 = [] 
 % #2 = [m] or [f]
 % #3 = {name}
@@ -507,14 +580,6 @@ de Mestre \\em \@majorfield}
 \def\@theauthorstr[#1]{%
 	\@ptheauthorstr[#1]{\expandafter\csname @the#1authorcount\endcsname}{\expandafter\csname @the#1authorgender\endcsname}
 	}
-
-%\def\@ptheauthorstr[#1]#2#3{%
-%	\ifnum #2 > 1
-%%		do nothing
-%	\else			 
-%  		\hypersetup{pdfauthor={\@author}}
-%	\fi
-%	}
 
 \def\printauthor[#1]#2{%
 	\ifcsname @#1authorname#2\endcsname
@@ -591,7 +656,10 @@ de Mestre \\em \@majorfield}
 	\fi
 	}
 
-%% WORK IDENTIFICATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% DOCUMENT IDENTIFICATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 
 \def\@
 \def\title#1{%
   \gdef\@title{#1}
@@ -624,8 +692,10 @@ de Mestre \\em \@majorfield}
     \thedegree{\authorgender}{mastersdegreestr}
 \fi\fi\fi\fi}
 
-
-% JURY IDENTIFICATION (at most 5 of each)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% JURY IDENTIFICATION (at most 5 of each)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 
 %% [p] for president and [a] for referees 
 %% ---------------------------------------------------%%
 %% \jury[p|a]{Category and Name}
@@ -718,21 +788,18 @@ de Mestre \\em \@majorfield}
 	}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% PAGE LAYOUT
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \synctex=1 % Uase synctex
 \brokenpenalty=10000
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Fonts
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% FONTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand\quotefont{\normalfont\normalsize}
 \newcommand\quotefonti{\it\normalsize}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Including chapters and similars
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\newcommand{\reverseconcat}[3]{#3#2#1}
 \newcommand{\version}[1]{ 
 	\if\@language0
@@ -743,7 +810,13 @@ de Mestre \\em \@majorfield}
 	 		version #1
 	 \fi
  }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PRINT CHAPTERS, DEDICATORY, ACKNOWLEDGEMENTS, ABSTRACT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+\input{thesisisel-files/thesismainmatter.clo}
 
+% === Dedicatory ===
 \def\dedicatoryfile#1{%
   \gdef\@dedicatoryfile{#1}}
 \def\@dedicatoryfile{\@empty}
@@ -762,18 +835,22 @@ de Mestre \\em \@majorfield}
 }
 \fi
 
+% === Acknowledgement ===
 \def\acknowledgementsfile#1{%
   \gdef\@acknowledgementsfile{#1}}
 \def\@acknowledgementsfile{~acknowledgementsfile \@notdefined}
 
 \def\printacknowledgements{
 	\if\@degreetype0	
-	\else\if\@degreetype1	\@input@{Chapters/\@acknowledgementsfile}\global\let\@acknowledgementsfile\@empty
+	\else\if\@degreetype1			
+		\@input@{Chapters/\@acknowledgementsfile}\global\let\@acknowledgementsfile\@empty
 	\else\if\@degreetype2
-	\else\if\@degreetype3		\@input@{Chapters/\@acknowledgementsfile}\global\let\@acknowledgementsfile\@empty
+	\else\if\@degreetype3		
+		\@input@{Chapters/\@acknowledgementsfile}\global\let\@acknowledgementsfile\@empty
 	\fi\fi\fi\fi
 }
 
+% === Abstract ===
 \def\ptabstractfile#1{%
   \gdef\@ptabstractfile{#1}}
 \def\@ptabstractfile{\@empty}
@@ -790,54 +867,29 @@ de Mestre \\em \@majorfield}
 \def\@enabstractfile{~enabstractfile \@notdefined}
 \fi\fi
 
-\def\printabstract{%	
-	\ifx\@language0 % Sumário-PT + Abstract-EN for thesis in Portuguese
+\def\printabstract{%
+	\if\@language0   % Sumário-PT + Abstract-EN for thesis in Portuguese
 		\selectlanguage{portuguese}
-		\if{\@degreetype1\@degreetype3}
 		\@input@{Chapters/\@ptabstractfile}\global\let\@ptabstractfile\@empty
 		\ifx\@enabstractfile\@empty
 		\else
 			\selectlanguage{english}
 			\@input@{Chapters/\@enabstractfile}\global\let\@enabstractfile\@empty
 			\selectlanguage{portuguese}
-		\fi\fi
-	\else\ifx\@language1   % Abstract-EN + Sumário-PT for thesis in English
+		\fi
+	\else\if\@language1   % Abstract-EN + Sumário-PT for thesis in English
 		\selectlanguage{english}
-		\if{\@degreetype1\@degreetype3}
 		\@input@{Chapters/\@enabstractfile}\global\let\@enabstractfile\@empty
 		\ifx\@ptabstractfile\@empty
 		\else
 			\selectlanguage{portuguese}
 			\@input@{Chapters/\@ptabstractfile}\global\let\@ptabstractfile\@empty
 			\selectlanguage{english}
-		\fi\fi
+		\fi
 	\fi\fi
 }
 
-\def\thesismainmatter{%
-	\mainmatter
-	\pagestyle{fancy}
-	\fancyhead{}
-	\setlength{\headheight}{15pt}
-	\fancyhead[RO,LE]{\leftmark\hfill\rightmark}
-	\def\chaptermark##1{\markboth{\fontfamily{ptm}% Times New Roman (ptm) or Helvetica (phv)
-		\selectfont\footnotesize\thechapter.\ \textsc{##1}}{}}
-	\def\sectionmark##1{\markright{\fontfamily{ptm}%
-	 	\selectfont\footnotesize\thesection.\ ##1}}
-	\if\@language0   % Thesis in  Portuguese
-		\selectlanguage{portuguese}
-	\else\if\@language1   % Thesis in English
-		\selectlanguage{english}
-	\fi\fi
-}
-
-\def\endthesismainmatter{%
-	\fancyhead{}
-	\lhead{\nouppercase{\textsc{\leftmark}}}
-	\rhead{}
-}
-
-% Chapters
+% === Chapters ===
 \newcount\@chapcount
 \@chapcount 0\relax
 
@@ -859,144 +911,17 @@ de Mestre \\em \@majorfield}
 	\endthesismainmatter
 }
 
-
-% Appendixes
-\newcount\@appxcount
-\@appxcount 0\relax
-
-\def\appendixfile#1{%
-	\advance\@appxcount 1\relax
-	\expandafter\gdef\csname @appendixfile\number\@appxcount\endcsname{Appendixes/#1}
-}
-
-\def\printappendixes{%	
-	\appendix
-	\newcount\@myi
-	\@myi 0\relax
-	\loop
-		\advance\@myi 1\relax
-		\def\@appxname{\expandafter\csname @appendixfile\number\@myi\endcsname}
-		\@input@{\@appxname}
-	\ifnum \@myi < \@appxcount
-	\repeat
-}
-
-% To process lists and other stuff
-\RequirePackage{etoolbox}
-%\usepackage{pgffor}%
-
-% Portuguese
-\if\@language0
-  	\gdef\@notdefined{NÃO DEFINIDO}
-  	\gdef\acknowledgementsname{Agradecimentos} 
-  	
-  	\addto\captionsportuguese{% Replace "english" with the language you use
-  		\renewcommand{\contentsname}{Índice}%
-	}
-	
- 	\renewcommand*{\listtablename}{Lista de Tabelas}
-	\renewcommand*{\listfigurename}{Lista de Figuras}
-	
-  	\def\appendixname{Anexos}
-  	\addto{\captionsportuguese}{%
-  		\renewcommand{\bibname}{Referências}
-  	}
-  	
-  	\def\glossaryname{Main}
- 		\addto{\captionsportuguese}{
- 			\renewcommand*{\glossaryname}{Lista de Abreviaturas}
- 			\renewcommand*{\pagelistname}{Páginas}
- 			\renewcommand*{\entryname}{Notação}
-	}
-	
-  	\renewcommand*{\nomname}{Lista de Abreviaturas e S\'{i}mbolos} % Nomenclatura
- 
-	\def\lstlistlistingname{Listagens}
-	  	\addto{\captionsportuguese}{%
-			%\renewcommand*{\lstlistingname}{Listagem}%
-			\renewcommand*{\lstlistingname}{Listagem}% Listing -> Algorithm
-			\renewcommand{\lstlistlistingname}{Lista de Listagens}% List of Listings -> List of Algorithms
-	}
-	
-	\renewcommand{\algorithmicrequire}{\textbf{Dados: }}
-	\renewcommand{\algorithmicensure}{\textbf{Resultado: }}
-
-	\def\backrefbrazil{%
-		\def\backrefpagesname{p\'aginas}%
-		\def\backrefsectionsname{se\c c\~oes}%
-		\def\backrefsep{, }%
-		\def\backreftwosep{ e~}%
-		\def\backreflastsep{, e~}%
-	}
-	
-% English
-\else\if\@language1
-  	\gdef\@notdefined{UNDEFINED}
-  	\gdef\acknowledgementsname{Acknowledgments}
-  	\def\appendixname{Appendix}
-
-	\def\lstlistlistingname{Listings}
-	  	\addto{\captionsenglish}{%
-			%\renewcommand*{\lstlistingname}{Listagem}%
-			\renewcommand*{\lstlistingname}{Listing}% Listing -> Algorithm
-			\renewcommand{\lstlistlistingname}{List of \lstlistingname s}% List of Listings -> List of Algorithms
-	}
-	  	
-  	\def\backrefenglish{%
-		\def\backrefpagesname{pages}%
-		\def\backrefsectionsname{sections}%
-		\def\backrefsep{, }%
-		\def\backreftwosep{ and~}%
-		\def\backreflastsep{, and~}%
-		}
-\fi\fi
-
-%====================================================================
-% PACKAGE listings
-%====================================================================
-%
-% The ‘listings’ package is loaded at the beginning of a LATEX file in the preamble
-% Here is an example of my \lset{} declaration for ‘R’ code. 
-% Then, after having including this (also in the preamble), I simply include my external ‘R’ files. 
-% They can be included using an:
-% \include{ } - like interface to the external files;
-% by using the command \lstinputlisting{./code.R} to include the code from the file code.R which % is located in the same directory as the ‘LATEX’ source file.
-%
-%====================================================================
-
-\usepackage{listings}
-%listings package provides a key called inputpath for specifying a path where \lstinputlisting should search for source files.
-\newcommand*\lstinputpath[1]{\lstset{inputpath=#1}}
-
-\renewcommand{\lstlistoflistings}{
-	\begingroup
-	\tocfile{\lstlistlistingname}{lol}
-	\endgroup}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Conditional list of figure, table, listings - listoffigures, listoftables and lstlistoflistings only if listings are present
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% To aggregate multiple figures in a single one with subfigures
-\usepackage{subfigure}
-
-% To have text wrapping figures
-\usepackage{wrapfig}
-\usepackage{float}						% Improves the interface for defining floating objects such as figures and tables
-%
-%====================================================================
- \usepackage[figure,table,lstlisting]{totalcount}
-
+% === Conditional list of tables, figures, ... ===
 \newcommand\conditionalLoF{%
   \iftotalfigures\listoffigures\fi}
 \newcommand\conditionalLoT{%
   \iftotaltables\listoftables\fi}
 \newcommand\conditionalLoL{%
-  \iftotallstlistings\lstlistoflistings\fi}   
-  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \iftotallstlistings\lstlistoflistings\fi} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Deal with optional lists in the frontmatter: listoftables, listoffigures, etc.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \def\@printlist#1{ %
 		#1\cleardoublepage
 }
@@ -1010,195 +935,18 @@ de Mestre \\em \@majorfield}
 		\forlistloop{\@printlist}{\@frontmatter@list} %
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% FRONTPAGE
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\def\frontpage{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+\input{thesisisel-files/frontpage.clo}
+\input{thesisisel-files/frontpageMSc.clo}
+\input{thesisisel-files/frontpageBSC.clo}
 
-\thispagestyle{empty}
-\newgeometry{tmargin=0.25cm,bmargin=0.5cm,lmargin=2cm,rmargin=2cm}
-
-\begin{center}
-% Put logo
-	\logo{\@universitylogo}{0.12}
-
-%Define font style (ptm=Times New Roman)
-	\fontfamily{ptm}
-
-% Name of Institute
-	\fontsize{16}{19.2}
-	\selectfont
-	\textbf{\@university}
-
-\vspace{0.25cm}	
-% Name of Department
-	\fontsize{14}{16.8}
-	\selectfont
-	\textbf{\@department}
-
-% Put image
-	\ifx\@workimage\undefined
-	\noimage
-	\else
-	\image{\@workimage}
-	\fi
-
-\vspace{0.65cm}
-% Title of Dissertation
-	\fontsize{18}{21.6}
-	\selectfont
-	\textbf{\@title}\\[0.75cm]
-
-
-\vspace{0.2cm}	
-% Name of Candidate
-	\fontsize{16}{19.2}
-	\selectfont
-	\textbf{
-		\ctable[
-			cap=,
-			caption=,
-			label=,
-			pos=h,
-			maxwidth=1\linewidth,
-			doinside=\hspace*{0.1cm},
-		]{rX}{}{ 
-			\printauthor[]{1}
-			\printauthor[]{2}
-			\printauthor[]{3}
-	}}
-
-\vspace{0.10cm}	
-% Academic qualifications
-	\fontsize{14}{16.8}
-	\selectfont
-	\@authordegree
-	
-\vspace{0.75cm}
-% Degree
-	\fontsize{12}{13}
-	\selectfont
-	\@presentationtext
-	
-	\vfill
-	% Advisers
-	\fontsize{11}{14.4}
-	\selectfont
-	\ctable[
-		cap=,
-		caption=,
-		label=,
-		pos=h,
-		maxwidth=1\linewidth,
-		doinside=\hspace*{0.1cm},
-	]{rX}{}{ 
-		\printadviser[]{1}
-		\printadviser[]{2}
-}
-
-
-\vfill\vfill
-% Referee board
-\if\@degreetype3
-\printthejury
-\fi
-
-\vfill\vfill\vfill
-
-% Date
-\fontsize{10}{12.2}
-\selectfont
-\textbf{\@themonth, \@theyear}
-	
-\end{center}
-\restoregeometry
-\cleardoublepage %\newpage
-\thispagestyle{empty}
-}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Frontpage - Bachelor Project
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\def\frontpageBSC{
-
-\thispagestyle{empty}
-\newgeometry{tmargin=0.25cm,bmargin=0.5cm,lmargin=2cm,rmargin=2cm}
-
-\begin{center}
-% Put logo
-	\logo{\@universitylogo}{0.35}
-
-%Define font style (ptm=Times New Roman)
-	\fontfamily{ptm}
-
-% Name of Institute
-	\fontsize{16}{19.2}
-	\selectfont
-	\textbf{\@university}
-
-\vspace{0.25cm}	
-% Name of Department
-	\fontsize{14}{16.8}
-	\selectfont
-	\textbf{\@department}
-
-
-\vspace{0.65cm}
-% Title of Dissertation
-	\fontsize{18}{21.6}
-	\selectfont
-	\textbf{\@title}\\[0.75cm]
-
-\vspace{1.5cm}	
-% Name of Candidate
-	\fontsize{14}{16.8}
-	\selectfont
-	\textbf{
-		\ctable[
-			cap=,
-			caption=,
-			label=,
-			pos=h,
-			maxwidth=1\linewidth,
-			doinside=\hspace*{0.1cm},
-		]{rX}{}{ 
-		%\toprule
-		\printauthor[]{1}\\
-		\ifnum \@theauthorcount > 1		
-		\midrule	
-		\printauthor[]{2}\\
-		\ifnum \@theauthorcount > 2
-		\midrule	
-		\printauthor[]{3}
-		\fi\fi
-}}
-
-
-\vspace{0.75cm}
-% Degree
-	\fontsize{12}{13}
-	\selectfont
-	\@presentationtext
-	
-\vfill\vfill
-
-\vfill\vfill\vfill
-
-% Date
-\fontsize{10}{12.2}
-\selectfont
-\textbf{\@themonth, \@theyear}
-	
-\end{center}
-\restoregeometry
-\cleardoublepage %\newpage
-\thispagestyle{empty}
-}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Dedicatory
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% DEDICATORY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
 \def\dedicatory{ %
 	\if @openright\cleardoublepage\else\clearpage\fi
 	\thispagestyle{empty}
@@ -1214,9 +962,10 @@ de Mestre \\em \@majorfield}
 	\end{flushright}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Quote
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% QUOTE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
 \def\quote{%
 	\if@openright\cleardoublepage\else\clearpage\fi
 	\thispagestyle{empty}
@@ -1232,85 +981,154 @@ de Mestre \\em \@majorfield}
 	\end{flushright}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Acknowledgements
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ACKNOWLEDGEMENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
 \def\acknowledgements{%
   \chapter*{\acknowledgementsname}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Abstract
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ABSTRACT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
 \def\abstractEN{%
   \selectlanguage{english}
   \gdef\@keywordsname{\@keywordsnameEN}
   \chapter*{\@abstrnameEN}
 }
   
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Resumo (Abstract in Portuguese)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  ABSTRACT IN PORTUGUESE LANGUAGE (RESUMO)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
 \def\abstractPT{%
   \selectlanguage{portuguese}
   \gdef\@keywordsname{\@keywordsnamePT}
   \chapter*{\@abstrnamePT}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Keywords
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% KEYWORDS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
 \def\@keywordsname{\@defaultkeywordsname}
 \def\keywords{%
   \par\vskip\baselineskip\noindent{\bf\@keywordsname: }}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Chapter files
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CHAPTERS FILES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
 \newcommand*{\MaxNumOfChapters}{10}% Adjust these two settings for your needs.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Table of contents
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TABLE OF CONTENTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
 \setcounter{tocdepth}{2}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Sectioning
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTIONING
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
 \setcounter{secnumdepth}{3}
 
-\definecolor{backGrayColor}{rgb}{0.7,0.7,0.7} % Background title color
 
+\definecolor{backGrayColor}{rgb}{0.7,0.7,0.7} % Background title color
 \titleformat{\chapter}[display]
-{\bfseries\Huge}				% format
-{\hfill\colorbox{backGrayColor}{\fontsize{80}{100}\selectfont{\textcolor{white}{\thechapter}}}} % label
-{1ex}							% sep
-{%\titlerule
-  \vspace{2ex}\filleft}			% before
-[\vspace{1cm}					%\titlerule
+	{\bfseries\Huge}				% format
+	{\hfill\colorbox{backGrayColor}{\fontsize{80}{100}\selectfont{\textcolor{white}	{\thechapter}}}} % label
+	{1ex}							% sep
+	{%\titlerule
+  	\vspace{2ex}\filleft}			% before
+	[\vspace{1cm}					%\titlerule
 ]
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% HEADERS & FOOTERS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Headers & footers
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Bibliography
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% BIBLIOGRAPHY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
 %http://tex.stackexchange.com/questions/15971/bibliography-with-page-numbers
-\usepackage{backref}
-\renewcommand*{\backref}[1]{}
-\renewcommand*{\backrefalt}[4]{%
-    \ifcase #1 (not cited)%
-    \or        (p.~#2)%
-    \else      (pp.~#2)%
-    \fi}
-
-% break long URLs in Bibtex
 %URL linebreak in footnote
-\usepackage{breakurl}
-\def\UrlBreaks{\do\/\do-}
+%\usepackage{breakurl}
+\usepackage[
+	style=ieee, %{ieee, numeric, alphabetic, authoryear, authortitle, verbose, apa, chem-acs, chem-angew, mla, nature, science, nejm, phys},
+%defernumbers=true, 
+	backend=bibtex, %{bibtex, biber}
+	sorting=debug, %{none, nty, nyt, nyvt, anyt, anyvt, ynt, debug},
+	%dashed=false, 
+	maxnames=20,
+	maxcitenames=3,
+	giveninits=false,
+	citestyle=nature,
+	natbib=true,%
+	doi=true,%
+	%url=false,%
+	isbn=true,%
+	%urldate=long,
+	%uniquename=false,
+	%uniquelist=false
+]{biblatex}
+
+%%%% The important part:
+\DefineBibliographyStrings{portuguese}{%
+	bibliography = {Referências},
+    references = {Referências},
+    page={pág.},
+    pages={páginas},
+    and={\&},
+  	mathesis = {Tese de Mestrado},
+  	phdthesis = {Tese de Doutoramento}
+}
+
+\DefineBibliographyStrings{english}{%
+	bibliography = {References},
+    references = {References},
+    page={page},
+    pages={pages},
+    %and={\&}  	
+}
+\usepackage{tocbibind} % Add bibliography/index/contents to Table of Contents. Automatically adds the bibliography and/or the index and/or the contents, etc., to the Table of Contents.
+
+% If you want to break on URL numbers
+\setcounter{biburlnumpenalty}{9000}
+% If you want to break on URL lower case letters
+\setcounter{biburllcpenalty}{9000}
+% If you want to break on URL UPPER CASE letters
+\setcounter{biburlucpenalty}{9000}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% APPENDIXES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+\newcount\@appxcount
+\@appxcount 0\relax
+
+\def\appendixfile#1{%
+	\advance\@appxcount 1\relax
+	\expandafter\gdef\csname @appendixfile\number\@appxcount\endcsname{Appendixes/#1}
+}
+
+\ifx\@appendixfile\@empty
+	\def\printappendixes{}
+\else
+	\def\printappendixes{
+		\appendix
+		\newcount\@myi
+		\@myi 0\relax
+		\loop
+			\advance\@myi 1\relax
+			\def\@appxname{\expandafter\csname @appendixfile\number\@myi		\endcsname}
+		\@input@{\@appxname}
+		\ifnum \@myi < \@appxcount
+		\repeat
+	}
+\fi

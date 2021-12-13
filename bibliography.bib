@@ -1,92 +1,744 @@
-@MISC{primes,
-   author = "Charles Louis Xavier Joseph de la Vall{\'e}e Poussin",
-   note = "A strong form of the prime number theorem, 19th century",
-   year = 1879
-   }
-
-@INBOOK{chicago,
-   title = "The Chicago Manual of Style",
-   publisher = "University of Chicago Press",
-   edition = "Thirteenth",
-   year = 1982,
-   pages = "400--401",
-   key = "Chicago"
-   }
-
-@BOOK{texbook,
-   author = "Donald E. Knuth",
-   title= "The {{\texttt{TeX}}book}",
-   publisher = "Addison-Wesley",
-   year = 1984
-   }
-
-@BOOK{latexbook,
-   author = "Leslie Lamport",
-   title = "{\texttt{LaTeX} \rm:} {A} Document Preparation System",
-   publisher = "Addison-Wesley",
-   year = 1986
-   }
-
-@UNPUBLISHED{btxdoc,
-   author = "Oren Patashnik",
-   title = "{Using BibTeX}",
-   note = "Documentation for general BibTeX users",
-   month = jan,
-   year = 1988
-   }
-
-@UNPUBLISHED{btxhak,
-   author = "Oren Patashnik",
-   title = "Designing BibTeX Styles",
-   note = "The part of BibTeX's documentation
-                            that's not meant for general users",
-   month = jan,
-   year = 1988
-   }
-
-@BOOK{strunk,
-   author = "Strunk, Jr., William and E. B. White",
-   title = "The Elements of Style",
-   publisher = "Macmillan",
-   edition = "Third",
-   year = 1979
-   }
-
-@book{vanleunen,
-   title = "A Handbook for Scholars",
-   author = "Mary-Claire van Leunen",
-   publisher = "Knopf",
-   year = "1979"
-   }
-
-@ARTICLE{Zurek:1993,
-   AUTHOR  = {Zurek, R. W. and Martin, L. J.},
-   TITLE   = {Interannual Variability of planet-encircling dust activity on {M}ars},  
-   YEAR    = {1993},
-   JOURNAL = jgr,
-   VOLUME  = {98},
-   NUMBER  = {E2},
-   PAGES   = {3247--3259}
+%% -- Background
+@misc
+{
+    orchestration,
+    author = "Red Hat, Inc.",
+    title = "What is orchestration?",
+    year = "2021",
+    url  = "https://www.redhat.com/en/topics/automation/what-is-orchestration",
+    note = "accessed 24-August-2020"
 }
 
-@Article{Narendra_1990,
-  author =       {K.S.Narendra and K.Parthsarathy},
-  title =        {Identification and Control of Dynamical System
-                  using Neural Networks},
-  journal =      "IEENN",
-  year =         {1990},
-  volume =    {1},
-  number =    {1},
-  month =     {},
-  pages =     {4-27},
-  note =      {},
-  annote =    {}
+@misc
+{
+    redis,
+    author = "Redis Labs",
+    year = "2021",
+    title = "An introduction to Redis data types and abstractions",
+    url = "https://redis.io/topics/data-types-intro",
+    note = "[26-August-2020]"
 }
 
-@ONLINE{newtest,
-  author = {Bruin, J.},
-  title = {Newtest: command to compute new test {@ONLINE}},
-  month = FEB,
-  year = {2011},
-  url = {http://www.ats.ucla.edu/stat/stata/ado/analysis/}
+@misc
+{
+    scrapy-architecture,
+    author = "Zyte",
+    year = "2021",
+    title = "Architecture Overview",
+    url = "https://docs.scrapy.org/en/latest/topics/architecture.html",
+    note = "26-August-2020"
+}
+
+@book
+{
+    nginx-microservices,
+    author = "Chris Richardson and Floyd Smith",
+    publisher = "NGINX",
+    title = "Microservices From Design to Deployment",
+    addendum = "ebook",
+    year = "2016"
+}
+
+@INPROCEEDINGS
+{
+    kafka-thousand-requests,  
+    author="Shree, Rishika and Choudhury, Tanupriya and Gupta, Subhash Chand and Kumar, Praveen",  
+    booktitle="2017 2nd International Conference on Telecommunication and Networks (TEL-NET)",   
+    title="KAFKA: The modern platform for data management and analysis in big data domain", year="2017",  
+    volume="",  
+    number="",  
+    pages="1-5",  
+    doi="10.1109/TEL-NET.2017.8343593"
+}
+
+@book{
+    kafka-partition-figure,
+    author = {Neha Narkhede, Gwen Shapira, Todd Palino},
+    title = {Kafka: The Definitive Guide},
+    publish = {O'Reilly Media, Inc.},
+    ISBN = {9781491936160}
+}
+
+@misc
+{
+    kafka-cheap-hardware,
+    author = "Jay Kreps",
+    year = "2014",
+    title = "Benchmarking Apacha Kafka: 2 million writes per second (on three cheap machines)",
+    url = "https://engineering.linkedin.com/kafka/benchmarking-apache-kafka-2-million-writes-second-three-cheap-machines",
+    note = "09-July-2021"
+}
+
+@INPROCEEDINGS{6228206,
+  author={Auradkar, Aditya and Botev, Chavdar and Das, Shirshanka and De Maagd, Dave and Feinberg, Alex and Ganti, Phanindra and Gao, Lei and Ghosh, Bhaskar and Gopalakrishna, Kishore and Harris, Brendan and Koshy, Joel and Krawez, Kevin and Kreps, Jay and Lu, Shi and Nagaraj, Sunil and Narkhede, Neha and Pachev, Sasha and Perisic, Igor and Qiao, Lin and Quiggle, Tom and Rao, Jun and Schulman, Bob and Sebastian, Abraham and Seeliger, Oliver and Silberstein, Adam and Shkolnik, BBoris and Soman, Chinmay and Sumbaly, Roshan and Surlaker, Kapil and Topiwala, Sajid and Tran, Cuong and Varadarajan, Balaji and Westerman, Jemiah and White, Zach and Zhang, David and Zhang, Jason},
+  booktitle={2012 IEEE 28th International Conference on Data Engineering}, 
+  title={Data Infrastructure at LinkedIn}, 
+  year={2012},
+  volume={},
+  number={},
+  pages={1370-1381},
+  doi={10.1109/ICDE.2012.147}}
+
+@inproceedings{Kreps2011KafkaA,
+  title={Kafka : a Distributed Messaging System for Log Processing},
+  author={Jay Kreps},
+  year={2011}
+}
+
+@misc{
+    monolithic-architecture,
+    author = "Chris Richardson",
+    year = "2019",
+    title = "Pattern: Monolithic Architecture",
+    url = "https://microservices.io/patterns/monolithic.html",
+    note = "Accessed 03-July-2021"
+}
+
+@misc{
+    rabbit-mq-pub-sub,
+    author = "Florian Hopf",
+    year = "2018",
+    title = "Messaging with RabbitMQ",
+    url = "http://blog.florian-hopf.de/2018/03/rabbitmq-messaging-patterns.html",
+    note = "Accessed 10-July-2021"
+}
+
+@article{
+    kafka-less-than-1000,
+    title={Building LinkedIn's Real-time Activity Data Pipeline},
+    author={K. Goodhope and J. Koshy and Jay Kreps and N. Narkhede and Richard Park and J. Rao and Victor Yang Ye},
+    journal={IEEE Data Eng. Bull.},
+    year={2012},
+    volume={35},
+    pages={33-45}
+}
+
+@misc{
+    custom-kafka-tcp-protocol,
+    title = "Kafka Protocol Guide",
+    year = "2021",
+    author = "Apache Software Foundation",
+    url = "https://kafka.apache.org/protocol.html",
+    note = "Accessed 11-July-2021"
+}
+
+@inproceedings{
+    10.1145/3242153.3242155,
+    author = {Sax, Matthias J. and Wang, Guozhang and Weidlich, Matthias and Freytag, Johann-Christoph},
+    title = {Streams and Tables: Two Sides of the Same Coin},
+    year = {2018},
+    isbn = {9781450366076},
+    publisher = {Association for Computing Machinery},
+    address = {New York, NY, USA},
+    url = {https://doi.org/10.1145/3242153.3242155},
+    doi = {10.1145/3242153.3242155},
+    booktitle = {Proceedings of the International Workshop on Real-Time Business Intelligence and Analytics},
+    articleno = {1},
+    numpages = {10},
+    keywords = {Stream Processing, Semantics, Processing Model},
+    location = {Rio de Janeiro, Brazil},
+    series = {BIRTE '18}
+}
+
+@misc{
+    data-security,
+    title = "Introduction To Data Security",
+    year = "2020",
+    author = "Muhammad Raza",
+    url = "https://www.bmc.com/blogs/data-security/",
+    note = "Accessed 3-July-2021"
+}
+
+@misc{
+    technology-heterogeneity,
+    author = "Sam Newman",
+    year = "2015",
+    title = "Building Microservices",
+    url = "https://www.oreilly.com/library/view/building-microservices/9781491950340/ch01.html",
+    note = "Accessed 3-July-2021"
+}
+
+@INPROCEEDINGS{
+    virtualization-basics,
+    author={Jain, Nancy and Choudhary, Sakshi},
+    booktitle={2016 Symposium on Colossal Data Analysis and Networking (CDAN)}, 
+    title={Overview of virtualization in cloud computing}, 
+    year={2016},
+    volume={},
+    number={},
+    pages={1-4},
+    doi={10.1109/CDAN.2016.7570950}
+ }
+ 
+ % Ref: Kubernetes, Orchestration, Docker, Docker Swarm
+ @INPROCEEDINGS{
+    containerization-overview,
+    author={Moravcik, Marek and Kontsek, Martin},
+    booktitle={2020 18th International Conference on Emerging eLearning Technologies and Applications (ICETA)}, 
+    title={Overview of Docker container orchestration tools}, 
+    year={2020},
+    volume={},
+    number={},
+    pages={475-480},
+    doi={10.1109/ICETA51985.2020.9379236}
+  }
+
+@article{
+    cap-theorem-figure,
+    author = {Khazaei, Hamzeh and Fokaefs, Marios and Zareian, Saeed and Beigi, Nasim and Ramprasad, Brian and Shtern, Mark and Gaikwad, Purwa and Litoiu, Marin},
+    year = {2015},
+    month = {10},
+    pages = {},
+    title = {How do I choose the right NoSQL solution? A comprehensive theoretical and experimental survey},
+    volume = {2},
+    journal = {Journal of Big Data and Information Analytics (BDIA)},
+    doi = {10.3934/bdia.2016004}
+}
+
+@misc{
+    virtualization-key-properties,
+    title = "What is Virtualization?",
+    year = "2021",
+    author = "{VMware, Inc.}",
+    url = "https://www.vmware.com/solutions/virtualization.html",
+    note = "[Online; 03-July-2021]"
+}
+
+@INPROCEEDINGS{8284494,  author={Gupta, Adity and Tyagi, Swati and Panwar, Nupur and Sachdeva, Shelly and Saxena, Upaang},  booktitle={2017 International Conference on Computing and Communication Technologies for Smart Nation (IC3TSN)},   title={NoSQL databases: Critical analysis and comparison},   year={2017},  volume={},  number={},  pages={293-299},  doi={10.1109/IC3TSN.2017.8284494}}
+
+@misc{
+    docker-vs-vm,
+    title = {Docker vs. Virtual Machines: Differences You Should Know},
+    year = {2019},
+    author = {Imran Arora},
+    url = {https://cloudacademy.com/blog/docker-vs-virtual-machines-differences-you-should-know/},
+    note = "Accessed 3-July-2021"
+}
+
+@INPROCEEDINGS{
+    docker-vs-vm-table,
+    author={Dua, Rajdeep and Raja, A Reddy and Kakadia, Dharmesh},
+    booktitle={2014 IEEE International Conference on Cloud Engineering}, 
+    title={Virtualization vs Containerization to Support PaaS}, 
+    year={2014},
+    volume={},
+    number={},
+    pages={610-614},
+    doi={10.1109/IC2E.2014.41}
+ }
+ 
+@article{
+    Montezuma2019,
+    author = {Joaquim Montezuma and Jennifer McGarrigle},
+    title = {What motivates international homebuyers? Investor to lifestyle ‘migrants’ in a tourist city},
+    journal = {Tourism Geographies},
+    volume = {21},
+    number = {2},
+    pages = {214-234},
+    year  = {2019},
+    publisher = {Routledge},
+    doi = {10.1080/14616688.2018.1470196}
+}
+
+@Misc{
+    15mincity,
+    title   = {Defining 15-minute city},
+    author  = {CNU},
+    howpublished     = {\\online: \url{https://www.cnu.org/publicsquare/2021/02/08/defining-15-minute-city}. Last accessed 18 May 2021}
+}
+
+@Misc{
+    database-ranking,
+    title = {Database rankings},
+    howpublished = {\\online: \url{https://db-engines.com/en/ranking}. Last accessed 26 July 2021}
+}
+
+@Misc{
+    mongo-dev,
+    howpublished = {\\online: \url{https://www.mongodb.com/company}. Last accessed 26 July 2021}
+}
+ 
+ % Ref sobre docker, containerization, minikube, kubernetes
+@INPROCEEDINGS{
+    virtualization,
+    author={Muddinagiri, Ruchika and Ambavane, Shubham and Bayas, Simran},
+    booktitle={2019 International Conference on Innovative Trends and Advances in Engineering and Technology (ICITAET)}, 
+    title={Self-Hosted Kubernetes: Deploying Docker Containers Locally With Minikube}, 
+    year={2019},
+    volume={},
+    number={},
+    pages={239-243},
+    doi={10.1109/ICITAET47105.2019.9170208}
+ }
+ 
+ @INPROCEEDINGS{9047417,  author={Ma, Wenlong and Zhu, Yuqing and Wang, Sa and Bao, Yungang},  booktitle={2019 IEEE Intl Conf on Parallel   Distributed Processing with Applications, Big Data   Cloud Computing, Sustainable Computing   Communications, Social Computing   Networking (ISPA/BDCloud/SocialCom/SustainCom)},   title={LearnedCache: A Locality-Aware Collaborative Data Caching by Learning Model},   year={2019},  volume={},  number={},  pages={718-726},  doi={10.1109/ISPA-BDCloud-SustainCom-SocialCom48970.2019.00109}}
+
+@misc{
+    hypervisor,
+    title = {Hypervisor},
+    year = {2019},
+    author = {Himanshu Singh},
+    url = {https://www.vmware.com/topics/glossary/content/hypervisor},
+    note = "Accessed 3-July-2021"
+}
+
+@misc{
+    docker-overview,
+    author = {Docker, Inc.},
+    year = {2021},
+    title = {Docker overview},
+    url = {https://docs.docker.com/get-started/overview},
+    note = "Accessed 4-July-2021"
+}
+
+@book{
+    microservice-patterns,
+    author = {Chris Richardson},
+    title = {Microservices Patterns},
+    publish = {Manning},
+    ISBN = {9781617294549}
+}
+
+@INPROCEEDINGS{
+    microservices-challenges-1,
+    author={Munaf, Raja Mubashir and Ahmed, Jawwad and Khakwani, Faraz and Rana, Tauseef},
+    booktitle={2019 International Conference on Communication Technologies (ComTech)}, 
+    title={Microservices Architecture: Challenges and Proposed Conceptual Design},
+    year={2019},
+    volume={},
+    number={},
+    pages={82-87},
+    doi={10.1109/COMTECH.2019.8737831}
+ }
+
+@misc{
+    airdna-duplicates,
+    title = {Is the Vacation Rental Industry Overstated?},
+    author = {Caitlyn Milton},
+    year = {2019},
+    url = {https://www.airdna.co/blog/vacation-rental-industry-overstated},
+    urldate = {2021-07-22}
+}
+
+@misc{
+    grpc-architecture-example,
+    author = "gRPC.io",
+    year = "2021",
+    title = "What is gRPC?",
+    url = "https://grpc.io/docs/what-is-grpc/introduction",
+    note = "[Online; 08-September-2021]"
+}
+
+@INPROCEEDINGS{
+    microservices-challenges-2,
+    author={Liu, Guozhi and Huang, Bi and Liang, Zhihong and Qin, Minmin and Zhou, Hua and Li, Zhang},
+    booktitle={2020 IEEE 20th International Conference on Software Quality, Reliability and Security Companion (QRS-C)}, 
+    title={Microservices: architecture, container, and challenges}, 
+    year={2020},
+    volume={},
+    number={},
+    pages={629-635},
+    doi={10.1109/QRS-C51114.2020.00107}
+ }
+
+@misc{
+    kubernetes-vs-docker,
+    author = {Katie Lane},
+    year = {2020},
+    title = {Kubernetes vs Docker: What Does it Really Mean?},
+    url = {https://www.sumologic.com/blog/kubernetes-vs-docker/},
+    note = "Accessed 4-July-2021"
+}
+
+
+
+@inproceedings{deCandia2007DynamoAH,
+  title={Dynamo: amazon's highly available key-value store},
+  author={Giuseppe deCandia and Deniz Hastorun and M. Jampani and Gunavardhan Kakulapati and A. Lakshman and A. Pilchin and S. Sivasubramanian and Peter Vosshall and W. Vogels},
+  booktitle={SOSP},
+  year={2007}
+}
+
+@Inbook{Casalicchio2019,
+author="Casalicchio, Emiliano",
+editor="Puliafito, Antonio
+and Trivedi, Kishor S.",
+title="Container Orchestration: A Survey",
+bookTitle="Systems Modeling: Methodologies and Tools",
+year="2019",
+publisher="Springer International Publishing",
+address="Cham",
+pages="221--235",
+isbn="978-3-319-92378-9",
+doi="10.1007/978-3-319-92378-9_14",
+url="https://doi.org/10.1007/978-3-319-92378-9_14"
+}
+
+@INPROCEEDINGS{6623484,
+  author={Vasile, Adrian-Ioan and Päväloiu, Bujor and Dan Cristea, Paul},
+  booktitle={2013 20th International Conference on Systems, Signals and Image Processing (IWSSIP)}, 
+  title={Building a specialized high performance web crawler}, 
+  year={2013},
+  volume={},
+  number={},
+  pages={183-186},
+  doi={10.1109/IWSSIP.2013.6623484}}
+
+@misc{
+    docker-container-isolation,
+    author = {Docker, Inc.},
+    year = {2016},
+    title = {Introduction to Container Security},
+    url = {https://www.docker.com/sites/default/files/WP_IntrotoContainerSecurity_08.19.2016.pdf},
+    note = "Accessed 4-July-2021"
+}
+
+@misc{
+    kubernetes-key-features,
+    author = {SPEC INDIA},
+    year = {2019},
+    title = {Kubernetes vs. OpenShift: A Thorough Comparison},
+    url = {https://hackernoon.com/kubernetes-vs-openshift-a-detailed-comparison-7r3z53zlv},
+    note = "Accessed 4-July-2021"
+}
+
+@misc{
+    kubernetes-leader,
+    author = {Phillip Lorenzo},
+    year = {2018},
+    title = {Kubernetes Development Trends},
+    url = {https://www.sumologic.com/blog/kubernetes-development-trends/},
+    note = "Accessed 4-July-2021"
+}
+
+@inproceedings{27898,
+title	= {Bigtable: A Distributed Storage System for Structured Data},
+author	= {Fay Chang and Jeffrey Dean and Sanjay Ghemawat and Wilson C. Hsieh and Deborah A. Wallach and Mike Burrows and Tushar Chandra and Andrew Fikes and Robert E. Gruber},
+year	= {2006},
+booktitle	= {7th {USENIX} Symposium on Operating Systems Design and Implementation (OSDI)},
+pages	= {205--218}
+}
+
+@book{10.5555/2842853,
+author = {Elmasri, Ramez and Navathe, Shamkant B.},
+title = {Fundamentals of Database Systems},
+year = {2015},
+isbn = {0133970779},
+publisher = {Pearson},
+edition = {7th}
+}
+
+@article{graph-databases,
+author = {Chaudhary, Anoop and FAISAL, ABDUL},
+year = {2016},
+month = {06},
+pages = {},
+title = {Role of graph databases in social networks}
+}
+
+@misc{
+    kubernetes-difficult-to-learn,
+    author = {Eric Mikac},
+    title  = {Is It Hard to Learn Kubernetes?},
+    url    = {https://www.cbtnuggets.com/blog/devops/is-it-hard-to-learn-kubernetes},
+    note = "Accessed 4-July-2021"
+}
+
+
+
+@misc {horizontal-pod-autoscaler-definition,
+    author = "Cloud Native Computing Foundation",
+    title  = "Horizontal Pod Autoscaler",
+    year   = "2021",
+    url    = "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/",
+    note   = "Accessed 04-July-2021"
+}
+
+@misc{
+    prometheus-overview,
+    author = {Prometheus},
+    year = {2021},
+    title = {Overview},
+    url = {https://prometheus.io/docs/introduction/overview/},
+    note = "Accessed 5-July-2021"
+}
+
+@misc{
+    grafana-features,
+    author = {Elvis Plesky},
+    year = {2020},
+    title = {What is Grafana? A look at its most important features for effective monitoring},
+    url = {https://www.plesk.com/blog/various/grafana-monitoring-solution/},
+    note = "Accessed 5-July-2021"
+}
+
+@misc{
+    grafana-example,
+    author = {Mark Beierl},
+    year = {2016},
+    title = {Grafana},
+    url = {https://wiki.opnfv.org/display/storperf/grafana},
+    note = "Accessed 5-July-2021"
+}
+
+@book{
+    simkowitz1988geographic,
+    title={Geographic information systems: An important technology for transportation planning and operations},
+    author={Simkowitz, Howard J},
+    year={1988},
+    publisher={US Department of Transportation, Federal Highway Administration, Office of~…}
+}
+
+@INPROCEEDINGS{8780663,
+  author={Liu, Qing and Wang, Jing and Zhang, Dehai and Yang, Yun and Wang, NaiYao},
+  booktitle={2018 IEEE 4th International Conference on Computer and Communications (ICCC)}, 
+  title={Text Features Extraction based on TF-IDF Associating Semantic}, 
+  year={2018},
+  volume={},
+  number={},
+  pages={2338-2343},
+  doi={10.1109/CompComm.2018.8780663}}
+
+@book{
+    elasticsearch-book,
+    title={Elasticsearch: The Definitive Guide},
+    author={Simkowitz, Howard J},
+    year={2015},
+    publisher={O'Reilly Media, Inc.},
+    isbn={9781449358549}
+}
+
+@INPROCEEDINGS{
+    gis-overview,
+    author={Mennecke, B.E. and Crossland, M.D.},
+    booktitle={Proceedings of HICSS-29: 29th Hawaii International Conference on System Sciences}, 
+    title={Geographic information systems: applications and research opportunities for information systems researchers}, 
+    year={1996},
+    volume={3},
+    number={},
+    pages={537-546 vol.3},
+    doi={10.1109/HICSS.1996.493249}
+ }
+
+@misc{
+    react-lifecycle,
+    author = {Wojciech Maj},
+    year = {2021},
+    title = {React Lifecycle Methods diagram},
+    url = {https://github.com/wojtekmaj/react-lifecycle-methods-diagram},
+    note = "Accessed 7-July-2021"
+}
+
+@misc{
+    react-lifecycle-functions,
+    author = {Facebook, Inc.},
+    title = {React.Component},
+    year = {2021},
+    url = {https://reactjs.org/docs/react-component.html},
+    note = "Accessed 7-July-2021"
+}
+
+@misc{
+    react-state-and-lifecycle,
+    author = {Facebook, Inc.},
+    title = {State and Lifecycle},
+    year = {2021},
+    url = {https://reactjs.org/docs/state-and-lifecycle.html},
+    date = {2021-07-08},
+    note = "(accessed: 08.07.2021)"
+}
+
+@misc{
+    react-hooks,
+    author = {Facebook, Inc.},
+    title = {Using the State Hook},
+    year = {2021},
+    url = {https://reactjs.org/docs/hooks-state.html},
+    note = "Accessed 7-July-2021"
+}
+
+@misc{
+    mvc-pattern-simple,
+    title = {MVC},
+    year = {2021},
+    author = {Wikipedia Foundation},
+    url = {https://pt.wikipedia.org/wiki/MVC},
+    note = "Accessed 7-July-2021"
+}
+
+@misc{
+    mvvm-pattern-figure,
+    title = {How not to get desperate with MVVM implementation},
+    year = {2017},
+    author = {S.T. Huang},
+    url = {https://medium.com/flawless-app-stories/how-to-use-a-model-view-viewmodel-architecture-for-ios-46963c67be1b},
+    note = "Accessed 7-July-2021"
+}
+
+@INPROCEEDINGS{
+    load-balancing,
+    author={Jiao, Yang and Wang, Wei},
+    booktitle={2010 Third International Symposium on Electronic Commerce and Security}, 
+    title={Design and Implementation of Load Balancing of Distributed-system-based Web Server}, 
+    year={2010},
+    volume={},
+    number={},
+    pages={337-342},
+    doi={10.1109/ISECS.2010.81}
+ }
+
+@INPROCEEDINGS{
+    mvvm-problems,
+  author={Syromiatnikov, Artem and Weyns, Danny},
+  booktitle={2014 IEEE/IFIP Conference on Software Architecture}, 
+  title={A Journey through the Land of Model-View-Design Patterns}, 
+  year={2014},
+  volume={},
+  number={},
+  pages={21-30},
+  doi={10.1109/WICSA.2014.13}}
+
+@misc{
+    facebook-debugging-problems,
+    author = "Abel Avram",
+    title = "Facebook: MVC Does Not Scale, Use Flux Instead [Updated]",
+    year = "2014",
+    url = "https://www.infoq.com/news/2014/05/facebook-mvc-flux/",
+    note = "Accessed 8-July-2021"
+}
+
+%% -- Related Work 
+
+@INPROCEEDINGS{micro_kuber,
+    author={Abdollahi Vayghan, Leila and Saied, Mohamed Aymen and Toeroe, Maria and Khendek, Ferhat},
+    booktitle={2019 IEEE 19th International Conference on Software Quality, Reliability and Security (QRS)}, 
+    title={Microservice Based Architecture: Towards High-Availability for Stateful Applications with Kubernetes}, 
+    year={2019},
+    volume={},
+    number={},
+    pages={176-185},
+    doi={10.1109/QRS.2019.00034}
+ }
+ 
+ @INPROCEEDINGS{9130516,
+  author={Munonye, K. and Martinek, P.},
+  booktitle={2020 IEEE 15th International Conference of System of Systems Engineering (SoSE)}, 
+  title={Evaluation of Data Storage Patterns in Microservices Archicture}, 
+  year={2020},
+  volume={},
+  number={},
+  pages={373-380},
+  doi={10.1109/SoSE50414.2020.9130516}}
+  
+  @INPROCEEDINGS{9213058,  author={Meng, Yuan and Zhang, Shenglin and Sun, Yongqian and Zhang, Ruru and Hu, Zhilong and Zhang, Yiyin and Jia, Chenyang and Wang, Zhaogang and Pei, Dan},  booktitle={2020 IEEE/ACM 28th International Symposium on Quality of Service (IWQoS)},   title={Localizing Failure Root Causes in a Microservice through Causality Inference},   year={2020},  volume={},  number={},  pages={1-10},  doi={10.1109/IWQoS49365.2020.9213058}}
+ 
+ @article{Codd1970ARM,
+  title={A relational model of data for large shared data banks},
+  author={E. Codd},
+  journal={M.D. computing : computers in medical practice},
+  year={1970},
+  volume={15 3},
+  pages={
+          162-6
+        }
+}
+
+@ARTICLE{7458761,
+  author={Ebert, Christof and Gallardo, Gorka and Hernantes, Josune and Serrano, Nicolas},
+  journal={IEEE Software}, 
+  title={DevOps}, 
+  year={2016},
+  volume={33},
+  number={3},
+  pages={94-100},
+  doi={10.1109/MS.2016.68}}
+  
+  @INPROCEEDINGS{7333476,
+  author={Villamizar, Mario and Garcés, Oscar and Castro, Harold and Verano, Mauricio and Salamanca, Lorena and Casallas, Rubby and Gil, Santiago},
+  booktitle={2015 10th Computing Colombian Conference (10CCC)}, 
+  title={Evaluating the monolithic and the microservice architecture pattern to deploy web applications in the cloud}, 
+  year={2015},
+  volume={},
+  number={},
+  pages={583-590},
+  doi={10.1109/ColumbianCC.2015.7333476}}
+
+@inproceedings{alexandrescu2018distributed,
+  title={A distributed framework for information retrieval, processing and presentation of data},
+  author={Alexandrescu, Adrian},
+  booktitle={2018 22nd International Conference on System Theory, Control and Computing (ICSTCC)},
+  pages={267--272},
+  year={2018},
+  organization={IEEE}
+}
+
+@inproceedings{
+    rossi2020hierarchical,
+    title={Hierarchical scaling of microservices in Kubernetes},
+    author={Rossi, Fabiana and Cardellini, Valeria and Presti, Francesco Lo},
+    booktitle={2020 IEEE International Conference on Autonomic Computing and Self-Organizing Systems (ACSOS)},
+    pages={28--37},
+    year={2020},
+    organization={IEEE}
+}
+
+@INPROCEEDINGS{zenden,  
+    author={Milkovich, Kristina and Shirur, Saurabh and Desai, Pratap Kishore and Manjunath, Likhith and Wu, Wencen},  
+    booktitle={2020 IEEE Sixth International Conference on Big Data Computing Service and Applications (BigDataService)},   
+    title={ZenDen - A Personalized House Searching Application},   
+    year={2020},  
+    volume={},  
+    number={},  
+    pages={173-178},  
+    doi={10.1109/BigDataService49289.2020.00034}
+}
+
+@Article{smartcities4010006,
+AUTHOR = {Moreno, Carlos and Allam, Zaheer and Chabaud, Didier and Gall, Catherine and Pratlong, Florent},
+TITLE = {Introducing the “15-Minute City”: Sustainability, Resilience and Place Identity in Future Post-Pandemic Cities},
+JOURNAL = {Smart Cities},
+VOLUME = {4},
+YEAR = {2021},
+NUMBER = {1},
+PAGES = {93--111},
+URL = {https://www.mdpi.com/2624-6511/4/1/6},
+ISSN = {2624-6511},
+DOI = {10.3390/smartcities4010006}
+}
+
+@misc{
+    uber,
+    title = {Service-Oriented Architecture: Scaling the Uber Engineering Codebase As We Grow},
+    year = {2015},
+    author = {Einas Haddad},
+    url = {https://eng.uber.com/service-oriented-architecture/},
+    note = "Accessed 1-July-2021"
+}
+
+@misc{
+    trulia,
+    title = {Microservice Observability with Istio},
+    author = {Trulia Inc.},
+    year = {2020},
+    url = {https://www.trulia.com/blog/tech/microservice-observability-with-istio/},
+    note = "Accessed 2-July-2021"
+}
+
+@misc{
+    casafari-ai,
+    title = {Proptech for Real Estate Investors},
+    author = {Julia},
+    year = {2017},
+    url = {https://www.casafari.com/insights/proptech-real-estate-investors/},
+    note = "Accessed 22-July-2021"
+}
+
+
+@misc{
+    react-use-reducer,
+    title = {An Easy Guide to React useReducer() Hook},
+    author = {Dmitri Pavlutin},
+    year = {2021},
+    url = {https://dmitripavlutin.com/react-usereducer/},
+    note = "Accessed 28-September-2021"
 }

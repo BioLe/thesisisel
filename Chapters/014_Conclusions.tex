@@ -1,0 +1,44 @@
+\chapter{Conclusions}
+\label{cha:conclusions}
+
+In this chapter, we present some of the conclusions derived from this dissertation and some possible future improvements to the developed application. The aim of this thesis was to select an interesting topic that would allow me to apply and test the knowledge acquired through these last years of study consolidated in one larger final academic work.
+
+\section{Conclusions}
+
+The work consisted of exploring all the phases of development from planning to deployment to production, while trying to using state-of--of-the--the-art tools currently in use in the industry. The scope of the project was restructured during the planning, changing the focus from smart to sustainable cities with a focus on promoting mobility within the city.
+
+Upon defining the requirements, the first step was to obtain data that would allow the application to function. We designed a distributed solution that could easily be transformed and used for multiple sources, and that in the end could be left alone to perform periodically scheduled scrapes. Some of the sources proved to be more difficult than others, with some like \textbf{Idealista} proving impossible to scrape from due their anti-bot protection.
+
+The application was designed with microservices in mind, and as the literature warned us, it indeed slowed down the development of the application. Every time we needed to add a new feature, we would have to understand the needs of each service and how would we communicate with them. On top of it, each service has its own database, complicating even more the process. And, as a solo developer, having to manage the infrastructure was sometimes challenging, where sometimes I would feel lost trying to discover elements such as service ports.
+
+The extra development time it took, in a real world scenario would probably allow for a competitor to create a simplified version (e.g., monolith) and enter the market before we could ever have a chance. As such, for future projects, I would definitely start with a simple version and scale only when necessary.
+
+The backend and frontend were containerized and orchestrated through Kubernetes, of all the tools used within the project, without a doubt Kubernetes was the most useful, as it made deploying and managing the cluster extremely easy. Within two steps, a service would be deployed and ready to communicate with the rest of the cluster, or even the outside world. 
+
+To communicate between microservices, we took the time to experiment with different forms of communication. The first one was Kafka, an event streaming platform that we forced to work as synchronous messaging system, it did his job but was completely unnecessary and out of place. Making a swap to gRPC for all the followup services made the communication and development much easier, without any disadvantage for our event-less use case.
+
+Monitoring was a fundamental piece of the application as it allowed us to understand and decipher what was happening within the cluster. By exposing the microservices metrics with Prometheus and displaying them in Grafana, we were able to detect some resources management problems that otherwise would go unnoticed. This problem also became more noticeable due to the testing performed, pushing our microservices to the limits and finding their breakpoints, which gave us an insight we would not have otherwise.
+
+Finally, and probably the most important in the end, the interface that the user actually sees. We discussed the pros and cons of multiple frontend frameworks and ended up choosing \textbf{React}, which through the use of reusable components allowed us to save a lot of development time.
+
+\section{Publications}
+
+Part of the work produced in this dissertation was submitted for publication:
+
+\begin{description}
+    \item \textbf{Architecture of the 15-Minute City} L. Melo, N. Cruz, N. Dadia. Submitted to Inforum on Computação Paralela, Distribuída e de Larga Escala (CPDLA), 2021
+\end{description}
+
+\section{Future Work}
+\label{s:future_work}
+
+The most important part usually associated with any application that was left out was the process of Continuous Integration/Continuous Delivery (CI/CD), a way of frequently delivering apps to customers by introducing automation into the stages of app development. Successful CI means new code changes to an app are regularly built, tested, and merged to a shared repository. 
+While CD is usually associated to automatically release a developer's changes from the repository to production, where it usable by custom. It addresses the problem of overloading operations teams with manual processes that slow down app delivery.
+
+As of now, as a proof of concept, the application only has data associated with Lisbon Municipality, we would like to scale up the application to support the entire country and, if successful, expand it internationally. Regarding the estates, we would like to partner up with local real estate agencies that would authorize us to use photographs associated with the ads.
+
+One of the current problems of the application is the lack of algorithms to deal with data duplication (e.g., distinguishing the same house when extracted from Century21 and Remax), as such we would like to develop a solution to identify if an ad has already been extracted and if so, include new information from the different source.
+
+Testing wise, we would like to perform usability tests to better understand the market and what type of features would the end users want from the application while searching for their dream home.
+
+To improve the performance application we would like to change the location where Isochrones are currently calculated. As of now, when a user visits a new zone, all the estates in that zone are fetched and for each of those their respective isochrone is calculated, this allowed us to save API requests (by requesting only estates that are actually searched for) and stay within the montly cap of Mapbox free requests. But for the first user requesting a new zone, it may take a while to perform all these requests, as such, in the future we would like to perform these calculations right after extracting each estate, during the process of database insertion, this way we know it wont affect the speed of the requests, proving a better user experience.

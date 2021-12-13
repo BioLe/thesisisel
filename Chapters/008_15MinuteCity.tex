@@ -1,0 +1,40 @@
+\chapter{Implementation}
+\label{ch:15mc}
+
+This chapter describes the work behind the envisioned platform, ``\textbf{15-Minute City}'', where each section starts with an overview of the problem, followed by a detailed list of available implementations for the problems introduce and finally the purposed solution to the problem.
+
+The following chapter is split into multiple sections starting with \textbf{Scraping} (\ref{s:scraping}) details the design choices and implementation intricacies of the solution, while also highlighting some of the difficulties found. That section is followed by the \textbf{Microservices} (\ref{s:microservices}) each with their own challenges to overcome, such as communication and domain specific problems. To display all this details, a \textbf{user interface} was created, details which can be found in section \ref{s:user-interface}. At last \textbf{Monitoring}, in section \ref{s:monitoring} details how the system was monitored and why it was useful, which pairs perfectly with Testing chapter (\ref{ch:testing}), allowing the fine tuning of the application according to the information observed.
+    
+% In this chapter, we will present our proposed solution 15-Minute City, starting each section with a general overview of the problem, followed by a detailed list of available implementations and our solution to the problem. The first section, Scraping (\ref{s:scraping}) details the design choices and implementation intricacies of the solution, while also highlighting some of the challenges we had to overcome. This section is followed by the Microservices (\ref{s:microservices}, the backend that supports the entire application, explaining how they communicate, their functionalities and interesting problems related to each one. To present everything to the user an user interface was created, and details to such implementation lie in section \ref{s:user-interface}. Section \ref{s:monitoring} details how we monitor the system and why it was useful, which pairs perfectly with testing described in section \ref{s:testing}, allowing us to fine tune the application according to the data monitored.
+
+
+
+\section{Scraping}
+\label{s:scraping}
+
+%\include{Chapters/04_RealEstateData}
+\input{Chapters/009_Scraping}
+
+\section{Backend}
+\label{s:microservices}
+
+\input{Chapters/010_Microservices}
+
+%\section{Index}
+%\label{s:index}
+
+%\input{Chapters/implementation/Index}
+
+\section{User Interface}
+\label{s:user-interface}
+\input{Chapters/011_UserInterface}
+
+\section{Monitoring}
+\label{s:monitoring}
+
+\input{Chapters/012_Monitoring}
+
+%\chapter{Testing}
+%\label{s:testing}
+
+%\input{Chapters/013_Testing}
